@@ -32,8 +32,7 @@ public class GameManager : MonoBehaviour
         public Action<GameState> onChangeGameState;
         
         public bool canPause;
-     
-        public bool countDownActive;
+        
         private void Start()
         {
             gameState = GameState.Play;
