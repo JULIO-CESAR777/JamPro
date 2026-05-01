@@ -28,13 +28,13 @@ public class InputManager : MonoBehaviour
     
         KeyCode[] KeyboardController =
         {
-            KeyCode.LeftShift, // Drift
-            KeyCode.Space, // Salto
-            KeyCode.X, // Compra de items
-            KeyCode.R, // Sinergia
-            KeyCode.Q, // Item 1
-            KeyCode.E, // Item 2
-            KeyCode.S, // L2
+            KeyCode.W, 
+            KeyCode.A, 
+            KeyCode.S, 
+            KeyCode.D, 
+            KeyCode.Space, 
+            KeyCode.LeftShift, // Item 2
+            KeyCode.Q, // L2
             KeyCode.W, // R2
             KeyCode.P, // Start
             KeyCode.Tab, // Select
@@ -76,8 +76,6 @@ public class InputManager : MonoBehaviour
         {
             "Horizontal", // Left stick horizontal
             "Vertical", // Left stick vertical
-            "Mouse X", // Right stick horizontal
-            "Mouse Y" // Right stick vertical
         };
         
         private string[] xboxControllerAxis =
@@ -274,13 +272,13 @@ public enum INPUT_TYPE
 
 public enum BUTTONS
 {
+    W,
     A,
-    B,
-    X,
-    Y,
-    L1,
-    R1,
-    L2,
+    S,
+    D,
+    SPACE,
+    SHIFT,
+    RIGHT_CLICK,
     R2,
     START,
     SELECT,
@@ -288,10 +286,6 @@ public enum BUTTONS
 
 public enum AXIS
 {
-    LEFT_STICK_HORIZONTAL,
-    LEFT_STICK_VERTICAL,
-    LEFT_TRIGGER,
-    RIGHT_TRIGGER,
-    VERTICAL_DPAD,
-    HORIZONTAL_DPAD,
+    HORIZONTAL,
+    VERTICAL,
 }
