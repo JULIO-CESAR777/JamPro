@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private float originalGravityScale;
+    private Vector3 originalScale;
 
     private void Awake()
     {
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         isDashing = false;
+        originalScale = transform.localScale;
 
         gm = GameManager.instance;
         if (gm != null)
@@ -107,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             facingDirection = -1f;
         }
+        transform.localScale = new Vector3(facingDirection, 1f, 1f);
 
         jumpHeld = inputManager.IsButton(BUTTONS.SPACE);
 
