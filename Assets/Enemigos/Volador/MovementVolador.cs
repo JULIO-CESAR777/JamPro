@@ -7,6 +7,8 @@ public class MovementVolador : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float shootCooldown = 1.2f;
+    public float tolerance = 1f;
+    public float moveSpeed = 3f;
 
     private bool playerInsideZone = false;
     private float nextShootTime;
@@ -27,13 +29,21 @@ public class MovementVolador : MonoBehaviour
         if (!playerInsideZone || player == null)
             return;
 
-        if (transform.position.y > player.position.y && transform.position.x == player.position.x)
+        float xDistance = Mathf.Abs(transform.position.x - player.position.x);
+
+        if (transform.position.y > player.position.y && xDistance < tolerance)
         {
             if (Time.time >= nextShootTime)
             {
                 Shoot();
                 nextShootTime = Time.time + shootCooldown;
             }
+        }
+        else
+        {
+            float directionx = Mathf.Sign(player.position.x - transform.position.x);
+
+            transform.position += new Vector3(directionx * moveSpeed * Time.deltaTime, 0, 0 );
         }
     }
 

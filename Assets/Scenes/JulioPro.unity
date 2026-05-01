@@ -414,6 +414,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4794028021409440927, guid: 66ac6a836f166cf4681f23e2141680ed, type: 3}
   firePoint: {fileID: 2053514102}
   shootCooldown: 1.2
+  tolerance: 0.2
+  moveSpeed: 3
 --- !u!50 &476929431
 Rigidbody2D:
   serializedVersion: 5
@@ -939,8 +941,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caccb395d85960643904c883f7d436d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  dmgZone: {fileID: 0}
   canAttack1: 0
   CloseCombatDmg: 25
+  attack1Cooldown: 0.4
+  attack1Counter: 0
 --- !u!1 &887805883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,10 +1946,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1332676337956873796, guid: 66ac6a836f166cf4681f23e2141680ed, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4794028021409440927, guid: 66ac6a836f166cf4681f23e2141680ed, type: 3}
       propertyPath: m_Name
       value: bala
