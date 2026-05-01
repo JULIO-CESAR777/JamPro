@@ -17,6 +17,7 @@ public class MovementVolador : MonoBehaviour
 
         if (playerObj != null)
         {
+            print("Si encontre");
             player = playerObj.transform;
         }
     }
@@ -26,7 +27,7 @@ public class MovementVolador : MonoBehaviour
         if (!playerInsideZone || player == null)
             return;
 
-        if (transform.position.y > player.position.y)
+        if (transform.position.y > player.position.y && transform.position.x == player.position.x)
         {
             if (Time.time >= nextShootTime)
             {
