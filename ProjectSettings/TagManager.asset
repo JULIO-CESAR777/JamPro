@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - DmgZone
+  - Ground
   layers:
   - Default
   - TransparentFX

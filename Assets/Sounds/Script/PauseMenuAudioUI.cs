@@ -20,10 +20,11 @@ public class PauseMenuAudioUI : MonoBehaviour
 
     private void Start()
     {
-        //if (GameManager.GetInstance() != null)
-        ////    GameManager.GetInstance().onChangeGameState += OnChangeGameStateCallback;
-       //     isPaused = GameManager.GetInstance().gameState != GameState.Play;
-       // }
+        if (GameManager.GetInstance() != null)
+        { 
+            GameManager.GetInstance().onChangeGameState += OnChangeGameStateCallback;
+           isPaused = GameManager.GetInstance().gameState != GameState.Play;
+        }
 
         if (pausePanel != null)
             pausePanel.SetActive(isPaused);
@@ -32,13 +33,13 @@ public class PauseMenuAudioUI : MonoBehaviour
         SetupSliders();
     }
 
-   // public void OnChangeGameStateCallback(GameState newState)
-   // {
-      //  isPaused = newState != GameState.Play;
+    public void OnChangeGameStateCallback(GameState newState)
+    {
+        isPaused = newState != GameState.Play;
 
-       // if (pausePanel != null)
-       //     pausePanel.SetActive(newState == GameState.Pause);
-    //}
+        if (pausePanel != null)
+            pausePanel.SetActive(newState == GameState.Pause);
+    }
 
     public void SceneMenu()
     {
@@ -88,14 +89,14 @@ public class PauseMenuAudioUI : MonoBehaviour
 
     public void ResumeGame()
     {
-       // if (GameManager.GetInstance() != null)
-         //   GameManager.GetInstance().ChangeGameState(GameState.Play);
+        if (GameManager.GetInstance() != null)
+            GameManager.GetInstance().ChangeGameState(GameState.Play);
     }
 
     private void OnDestroy()
     {
-       // if (GameManager.GetInstance() != null)
-        //    GameManager.GetInstance().onChangeGameState -= OnChangeGameStateCallback;
+        if (GameManager.GetInstance() != null)
+            GameManager.GetInstance().onChangeGameState -= OnChangeGameStateCallback;
 
         PlayerPrefs.Save();
     }
