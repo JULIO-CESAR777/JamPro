@@ -282,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 661229696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,6 +390,12 @@ MonoBehaviour:
   dashDuration: 0.13
   dashCooldown: 0.45
   isDashing: 0
+  attackZone: {fileID: 661229697}
+  verticalAttackThreshold: 0.5
+  sideAttackPosition: {x: 0.8, y: 0}
+  upAttackPosition: {x: 0, y: 0.9}
+  sideAttackSize: {x: 0.9, y: 0.6}
+  upAttackSize: {x: 0.8, y: 0.8}
 --- !u!50 &763454053
 Rigidbody2D:
   serializedVersion: 5
@@ -540,8 +546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caccb395d85960643904c883f7d436d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  dmgZone: {fileID: 661229696}
   canAttack1: 0
   CloseCombatDmg: 25
+  attack1Cooldown: 0.4
+  attack1Counter: 0
+  attack1Duration: 0.3
 --- !u!1 &1325172172
 GameObject:
   m_ObjectHideFlags: 0
