@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
             KeyCode.Mouse0,
             KeyCode.Mouse1, 
             KeyCode.Escape, // Start
-            KeyCode.Tab, // Select
+            KeyCode.R, // Select
         }; 
     
         KeyCode[] XboxController =
