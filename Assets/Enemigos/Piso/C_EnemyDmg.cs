@@ -19,8 +19,9 @@ public class C_EnemyDmg : MonoBehaviour
         if (collision.GetComponent<PlayerHealth>() != null)
         {
             playerInside = collision;
+            enemyPatrol.StartAttack();
         }
-        DealDamage();
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)

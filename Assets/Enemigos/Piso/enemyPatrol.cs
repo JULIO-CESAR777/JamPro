@@ -12,6 +12,9 @@ public class EnemyPatrol : MonoBehaviour
     public float speed = 2f;
     public Animator anim;
 
+    public C_EnemyDmg enemyDmg;
+
+
     [Header("Ataque")]
     public float damage = 20f;
     public float knockbackForce = 12f;
@@ -34,8 +37,8 @@ public class EnemyPatrol : MonoBehaviour
 
             if (pointA != null && pointB != null)
             {
-                float distA = Vector2.Distance(transform.position, pointA.position);
-                float distB = Vector2.Distance(transform.position, pointB.position);
+                float distA = Mathf.Abs(transform.position.x - pointA.position.x);
+                float distB = Mathf.Abs(transform.position.x - pointB.position.x);
 
                 currentPoint = distA < distB ? pointA : pointB;
             }
@@ -49,6 +52,10 @@ public class EnemyPatrol : MonoBehaviour
                 if (gm.gameState == GameState.Pause)
                     isPaused = true;
             }
+
+            enemyDmg = GetComponentInChildren<C_EnemyDmg>();
+
+
 
 
         originalScaleX = Mathf.Abs(transform.localScale.x);
@@ -70,18 +77,18 @@ public class EnemyPatrol : MonoBehaviour
 
         rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
 
-        if (Vector2.Distance(rb.position, currentPoint.position) < 0.15f)
+        if (Mathf.Abs(rb.position.x - currentPoint.position.x) < 0.15f)
         {
             currentPoint = currentPoint == pointA ? pointB : pointA;
         }
 
         if (direction.x > 0.01f)
         {
-            transform.localScale = new Vector3(-originalScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(originalScaleX, transform.localScale.y, transform.localScale.z);
         }
         else if (direction.x < -0.01f)
         {
-            transform.localScale = new Vector3(originalScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-originalScaleX, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -96,8 +103,6 @@ public class EnemyPatrol : MonoBehaviour
             isAttacking = false;
             attackCounter = 0f;
 
-            if (dmgZone != null)
-                dmgZone.SetActive(false);
         }
     }
 
@@ -106,6 +111,7 @@ public class EnemyPatrol : MonoBehaviour
         PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
 
         if (player == null) return;
+        
 
         player.TakeDamage((int)damage, true);
 
@@ -124,8 +130,7 @@ public class EnemyPatrol : MonoBehaviour
         isAttacking = true;
         attackCounter = 0f;
 
-        if (dmgZone != null)
-            dmgZone.SetActive(true);
+        
 
         Debug.Log("Da�oPlayer");
     }
@@ -133,10 +138,11 @@ public class EnemyPatrol : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
+
         attackCounter = 0f;
 
-        if (dmgZone != null)
-            dmgZone.SetActive(true);
+        anim.SetTrigger("Attack");
+       
     }
 
     public void SetPatrolPoints(Transform a, Transform b)
@@ -147,8 +153,8 @@ public class EnemyPatrol : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
-        float distA = Vector2.Distance(transform.position, pointA.position);
-        float distB = Vector2.Distance(transform.position, pointB.position);
+        float distA = Mathf.Abs(transform.position.x - pointA.position.x);
+        float distB = Mathf.Abs(transform.position.x - pointB.position.x);
 
         currentPoint = distA < distB ? pointA : pointB;
     }
@@ -160,5 +166,15 @@ public class EnemyPatrol : MonoBehaviour
         anim.speed = isPaused ? 0f : 1f;
     }
 
-    //CUANDO MUERA USAR ESTO GetComponent<EnemyDeath>().Die();
+    public void attacckk()
+    {
+        if (enemyDmg != null)
+        {
+            enemyDmg.DealDamage();
+        }
+       
+
+    }
+
+ 
 }

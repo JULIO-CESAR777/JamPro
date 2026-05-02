@@ -6,6 +6,8 @@ public class EnemyDeath : MonoBehaviour
 
     public int health = 100;
 
+    private Animator anim;
+
     
     public void SetSpawner(EnemySpawner enemySpawner)
     {
@@ -27,18 +29,19 @@ public class EnemyDeath : MonoBehaviour
         health -= dmg;
         if (health <= 0)
         {
-
+            anim.SetTrigger("Die");
             Die();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if(collision.CompareTag("DmgZone"))
+        else
         {
-            GetDmgEnemy(PlayerAttack.GetInstance().CloseCombatDmg);
-            print("CACAttack");
+            anim.SetTrigger("Injured");
+
         }
     }
+
+  
+
+  
+  
+
 }
