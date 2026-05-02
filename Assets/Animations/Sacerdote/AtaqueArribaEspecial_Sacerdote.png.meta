@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,7 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,12 +95,144 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_0
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 22
+        width: 80
+        height: 208
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7185f57c288412e41adbe6acfa53ca00
+      internalID: -1043715573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_1
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 22
+        width: 92
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b7702887f7cf94abc1cfabef632f98
+      internalID: 1713069369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_2
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 22
+        width: 98
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1946c5a8f56b03a4aa0dfe194847dc77
+      internalID: 1270830580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_4
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 22
+        width: 100
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2316475a537e5684d94de8351c0f55aa
+      internalID: 510545431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_5
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 22
+        width: 102
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53105922e049b8b4ea1e01713720abdd
+      internalID: 589876106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueArribaEspecial_Sacerdote_7
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 22
+        width: 88
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e401a93dffe80334692e7f4a854d1be2
+      internalID: 106064607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e334449db9d930644b5087b211835e21
     internalID: 0
     vertices: []
     indices: 
@@ -108,8 +240,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      AtaqueArribaEspecial_Sacerdote_0: -1043715573
+      AtaqueArribaEspecial_Sacerdote_1: 1713069369
+      AtaqueArribaEspecial_Sacerdote_2: 1270830580
+      AtaqueArribaEspecial_Sacerdote_3: 1525042622
+      AtaqueArribaEspecial_Sacerdote_4: 510545431
+      AtaqueArribaEspecial_Sacerdote_5: 589876106
+      AtaqueArribaEspecial_Sacerdote_6: -1309663082
+      AtaqueArribaEspecial_Sacerdote_7: 106064607
+      AtaqueArribaEspecial_Sacerdote_8: -1284617924
+      AtaqueArribaEspecial_Sacerdote_9: -1120132140
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
