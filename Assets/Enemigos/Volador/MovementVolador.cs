@@ -43,7 +43,7 @@ public class MovementVolador : MonoBehaviour
         {
             float directionx = Mathf.Sign(player.position.x - transform.position.x);
 
-            transform.position += new Vector3(directionx * moveSpeed * Time.deltaTime, 0, 0 );
+            transform.position += new Vector3(directionx * moveSpeed * Time.deltaTime, 0, 0);
         }
     }
 
@@ -56,4 +56,8 @@ public class MovementVolador : MonoBehaviour
     {
         playerInsideZone = inside;
     }
+
+    //CUANDO MUERA USAR ESTO GetComponent<EnemyDeath>().Die();
+
+
 }

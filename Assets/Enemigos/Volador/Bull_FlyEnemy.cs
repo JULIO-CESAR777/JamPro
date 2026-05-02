@@ -21,12 +21,9 @@ public class Bull_FlyEnemy : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-           
 
-            //if (player != null)
-            //{
-            //    player.TakeDamage(damage);
-           //
+
+            PlayerHealth.GetInstance().TakeDamage(15);
 
             Destroy(gameObject);
         }

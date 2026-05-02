@@ -99,7 +99,13 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Enemy") || other.CompareTag("End"))
         {
-            PlayerHealth.GetInstance().Heal(15);
+            PlayerHealth.GetInstance().Heal(25);
+            EnemyDeath enemyDeath = other.GetComponent<EnemyDeath>();
+            if (enemyDeath != null)
+            {
+                enemyDeath.GetDmgEnemy(10);
+
+            }
             Destroy(gameObject);
         }
     }
