@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 763454060}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -718,7 +718,10 @@ MonoBehaviour:
   firePoint: {fileID: 661229697}
   canShoot: 0
   shootCooldown: 0.4
-  dmgToPlayer: 10
+  dmgToPlayer: 0
+  attack1ParameterName: Attack1
+  attackUpParameterName: AttackUp
+  attack2ParameterName: Attack2
 --- !u!114 &763454059
 MonoBehaviour:
   m_ObjectHideFlags: 0

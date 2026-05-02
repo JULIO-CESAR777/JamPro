@@ -28,6 +28,20 @@ public class PlayerAttack : MonoBehaviour
 
     public float dmgToPlayer = 10f;
     private float shootCounter;
+    private Vector2 pendingShootDirection;
+    private bool hasPendingShot;
+    
+    
+    [Header("Animaciones")]
+    private Animator animator;
+    [SerializeField] private string attack1ParameterName = "Attack1";
+    [SerializeField] private string attackUpParameterName = "AttackUp";
+    [SerializeField] private string attack2ParameterName = "Attack2";
+    
+    private int attack1Hash;
+    private int attackUpHash;
+    private int attack2Hash;
+
 
     private void Start()
     {
@@ -46,6 +60,19 @@ public class PlayerAttack : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = PlayerHealth.GetInstance();
         
+        // Animaciones
+        animator = GetComponent<Animator>();
+        
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+        
+        attack1Hash = Animator.StringToHash(attack1ParameterName);
+        attackUpHash = Animator.StringToHash(attackUpParameterName);
+        attack2Hash = Animator.StringToHash(attack2ParameterName);
+
+
     }
 
     void Update()
@@ -82,31 +109,82 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (inputManager.IsButton(BUTTONS.LEFT_CLICK) && canAttack1)
+        if (inputManager.IsButtonDown(BUTTONS.LEFT_CLICK) && canAttack1)
         {
-            dmgZone.enabled = true;
-            canAttack1 = false;
+            DoCloseCombatAttack();
         }
 
-        if (inputManager.IsButton(BUTTONS.RIGHT_CLICK) && canShoot)
+        if (inputManager.IsButtonDown(BUTTONS.RIGHT_CLICK) && canShoot)
         {
-            canShoot = false;
-            Shoot();
+            StartShootAttack();
         }
         
     }
     
-    private void Shoot()
+    
+    private void DoCloseCombatAttack()
     {
-        canShoot = false;
-        
-        playerHealth.TakeDamage(dmgToPlayer);
+        dmgZone.enabled = true;
+        canAttack1 = false;
+        attack1Counter = 0f;
 
-        Vector2 shootDirection = Vector2.right;
+        PlayAttackAnimation(attack1Hash);
+    }
+    
+    private void PlayAttackAnimation(int attackHash)
+    {
+        if (animator == null) return;
+
+        bool attackingUp = false;
 
         if (playerMovement != null)
         {
-            shootDirection = playerMovement.attackDirection;
+            attackingUp = playerMovement.attackDirection == Vector2.up;
+        }
+
+        animator.SetFloat(attackUpHash, attackingUp ? 1f : 0f);
+        animator.SetTrigger(attackHash);
+    }
+    
+    private void StartShootAttack()
+    {
+        canShoot = false;
+        shootCounter = 0f;
+
+        pendingShootDirection = Vector2.right;
+
+        if (playerMovement != null)
+        {
+            pendingShootDirection = playerMovement.attackDirection;
+        }
+
+        hasPendingShot = true;
+
+        PlayAttackAnimation(attack2Hash);
+    }
+    
+    public void Shoot()
+    {
+        if (!hasPendingShot) return;
+        if (gm != null && gm.gameState == GameState.Pause) return;
+
+        hasPendingShot = false;
+
+        if (bulletPrefab == null)
+        {
+            Debug.LogWarning("No hay Bullet Prefab asignado.", this);
+            return;
+        }
+
+        if (firePoint == null)
+        {
+            Debug.LogWarning("No hay FirePoint asignado.", this);
+            return;
+        }
+
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(dmgToPlayer);
         }
 
         GameObject bullet = Instantiate(
@@ -119,8 +197,9 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletScript != null)
         {
-            bulletScript.SetDirection(shootDirection);
+            bulletScript.SetDirection(pendingShootDirection);
         }
     }
+    
     
 }
