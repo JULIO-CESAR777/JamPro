@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   isDead: 0
   health: 0
-  damagePerSecond: 0
+  damagePerSecond: 6.66
   slider: {fileID: 1208897601}
 --- !u!114 &763454060
 MonoBehaviour:

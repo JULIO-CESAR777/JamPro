@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private GameManager gm;
     private InputManager inputManager;
     private Rigidbody2D rb;
+    private Animator animator;
 
     [SerializeField] private bool isPaused = false;
 
@@ -59,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 sideAttackSize = new Vector2(0.9f, 0.6f);
     [SerializeField] private Vector2 upAttackSize = new Vector2(0.8f, 0.8f);
+    
+    [Header("Animaciones")]
+    [SerializeField] private string movementParameterName = "Movement";
+    private int movementHash;
 
     private BoxCollider2D attackZoneCollider;
 
@@ -75,6 +80,9 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        movementHash = Animator.StringToHash(movementParameterName);
+        
         originalGravityScale = rb.gravityScale;
         originalScale = transform.localScale;
         
@@ -125,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
 
             // Esto evita que la gravedad lo siga moviendo.
             rb.bodyType = RigidbodyType2D.Kinematic;
-            
         }
         else
         {
@@ -133,9 +140,8 @@ public class PlayerMovement : MonoBehaviour
 
             rb.linearVelocity = savedVelocity;
             rb.angularVelocity = savedAngularVelocity;
-            
-            
         }
+        animator.speed = isPaused ? 0f : 1f;
     }
 
     private void Update()
@@ -152,6 +158,9 @@ public class PlayerMovement : MonoBehaviour
         // Inputs
         horizontal = inputManager.GetAXis(AXIS.HORIZONTAL);
         vertical = inputManager.GetAXis(AXIS.VERTICAL);
+        
+        // Animaciones
+        UpdateAnimations();
 
         // Direcciones
         HandleFacingDirection();
@@ -382,6 +391,16 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
+    // Animaciones
+    private void UpdateAnimations()
+    {
+        if (animator == null) return;
+
+        float movementValue = Mathf.Abs(rb.linearVelocity.x);
+
+        animator.SetFloat(movementHash, movementValue);
+    }
+    
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
