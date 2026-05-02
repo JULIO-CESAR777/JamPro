@@ -32,14 +32,16 @@ public class GameManager : MonoBehaviour
         public Action<GameState> onChangeGameState;
         
         public bool canPause;
+        InputManager inputManager;
         
         private void Start()
         {
             gameState = GameState.Play;
             canPause = true;
+            inputManager = InputManager.GetInstance();
             
         }
-    
+
         public void PauseGame()
         {
             if (canPause)

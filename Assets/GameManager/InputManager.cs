@@ -33,10 +33,10 @@ public class InputManager : MonoBehaviour
             KeyCode.S, 
             KeyCode.D, 
             KeyCode.Space, 
-            KeyCode.LeftShift, // Item 2
-            KeyCode.Q, // L2
-            KeyCode.W, // R2
-            KeyCode.P, // Start
+            KeyCode.LeftShift,
+            KeyCode.Mouse0,
+            KeyCode.Mouse1, 
+            KeyCode.Escape, // Start
             KeyCode.Tab, // Select
         }; 
     
@@ -280,8 +280,8 @@ public enum BUTTONS
     D,
     SPACE,
     SHIFT,
+    LEFT_CLICK,
     RIGHT_CLICK,
-    R2,
     START,
     SELECT,
 }

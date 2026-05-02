@@ -6,6 +6,10 @@ TagManager:
   tags:
   - DmgZone
   - Ground
+  - Bullet
+  - Enemy
+  - End
+  - Transition
   layers:
   - Default
   - TransparentFX
