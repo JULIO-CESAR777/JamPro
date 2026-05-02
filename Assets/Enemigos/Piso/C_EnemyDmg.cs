@@ -39,7 +39,7 @@ public class C_EnemyDmg : MonoBehaviour
         PlayerHealth player = playerInside.GetComponent<PlayerHealth>();
         if (player == null) return;
 
-        PlayerHealth.GetInstance().TakeDamage(15);
+        PlayerHealth.GetInstance().TakeDamage(15, true);
 
         Rigidbody2D playerRb = playerInside.GetComponent<Rigidbody2D>();
 
@@ -53,6 +53,6 @@ public class C_EnemyDmg : MonoBehaviour
             playerRb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
         }
 
-        Debug.Log("DañoPlayer");
+        Debug.Log("Daï¿½oPlayer");
     }
 }

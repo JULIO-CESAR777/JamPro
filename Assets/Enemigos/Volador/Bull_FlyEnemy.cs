@@ -23,7 +23,7 @@ public class Bull_FlyEnemy : MonoBehaviour
         {
 
 
-            PlayerHealth.GetInstance().TakeDamage(15);
+            PlayerHealth.GetInstance().TakeDamage(15, true);
 
             Destroy(gameObject);
         }

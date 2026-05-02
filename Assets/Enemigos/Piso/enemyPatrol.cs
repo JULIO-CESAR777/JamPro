@@ -107,7 +107,7 @@ public class EnemyPatrol : MonoBehaviour
 
         if (player == null) return;
 
-        player.TakeDamage((int)damage);
+        player.TakeDamage((int)damage, true);
 
         Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
 
@@ -127,7 +127,7 @@ public class EnemyPatrol : MonoBehaviour
         if (dmgZone != null)
             dmgZone.SetActive(true);
 
-        Debug.Log("DañoPlayer");
+        Debug.Log("Daï¿½oPlayer");
     }
 
     public void StartAttack()

@@ -18,15 +18,21 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth = 100;
     private GameManager gm;
     private bool isPaused = false;
-    public bool isDead;
+    private Animator animator;
     
     [Header("Vida")]
     public float health;
     public float damagePerSecond = 6.66f;
+    public bool isDead;
+    [SerializeField] private string dieParameterName = "isDead";
+    [SerializeField] private string damageParameterName = "isDamage";
+    
+    private int isDeadHash;
+    private int isDamageHash;
     
     [Header("Visuales")]
     [SerializeField] Slider slider;
-
+    
     private void Start()
     {
         health = maxHealth;
@@ -40,6 +46,9 @@ public class PlayerHealth : MonoBehaviour
             if (gm.gameState == GameState.Pause)
                 isPaused = true;
         }
+        animator = GetComponent<Animator>();
+        isDeadHash = Animator.StringToHash(dieParameterName);
+        isDamageHash = Animator.StringToHash(damageParameterName);
     }
 
     public void OnChangeGameStateCallback(GameState newState)
@@ -60,9 +69,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool fromEnemy)
     {
         health -= damage;
+        if (fromEnemy)
+        {
+            animator.SetTrigger(isDamageHash);
+        }
     }
 
     public void Heal(float heal)
@@ -76,7 +89,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        gm.ChangeGameState(GameState.Pause);
         isDead = true;
+        gm.ChangeGameState(GameState.Pause);
+        animator.SetTrigger(isDeadHash);
     }
 }

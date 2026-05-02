@@ -25,6 +25,9 @@
         PlayerMovement playerMovement;
         PlayerHealth playerHealth;
         
+        [Header("Referencias de ataque")]
+        [SerializeField] private Transform attackZone;
+        
         [Header("Ataque cuerpo a cuerpo")]
         [SerializeField] Collider2D dmgZone;
         public bool canAttack1;
@@ -44,17 +47,20 @@
 
         public float dmgToPlayer = 10f;
         private float shootCounter;
+        
         private Vector2 pendingShootDirection;
         private bool hasPendingShot;
+        private Vector2 pendingShootOffset;
 
         [Header("Ataque especial")] 
         [SerializeField] GameObject specialBulletPrefab;
         public int killToChargeAttack;
         public int killCounter;
         public bool canDoSpecial;
+        public int damageFromSpecial;
         
         [SerializeField] private float rayDistance = 8f;
-        [SerializeField] private float rayDamage = 50f;
+        [SerializeField] private int rayDamage = 50;
         [SerializeField] private LayerMask rayHitMask;
 
         [SerializeField] private bool drawDebugRay = true;
@@ -68,7 +74,8 @@
 
         private Vector2 pendingRayDirection;
         private bool hasPendingRay;
-
+        private Vector2 pendingRayOffset;
+        
         private bool isShowingRayLine;
         private float rayLineCounter;
         
@@ -180,6 +187,50 @@
             
         }
 
+        private Vector2 GetDirectionFromAttackZone()
+        {
+            if (attackZone == null)
+            {
+                if (playerMovement != null)
+                {
+                    return playerMovement.attackDirection;
+                }
+
+                return Vector2.right;
+            }
+
+            Vector2 dir = attackZone.position - transform.position;
+
+            if (dir.sqrMagnitude <= 0.01f)
+            {
+                return Vector2.right;
+            }
+
+            // Si el AttackZone está más arriba que a los lados, dispara hacia arriba
+            if (Mathf.Abs(dir.y) > Mathf.Abs(dir.x))
+            {
+                return Vector2.up;
+            }
+
+            // Si está más a la derecha o izquierda, dispara hacia ese lado
+            return dir.x >= 0f ? Vector2.right : Vector2.left;
+        }
+        
+        private Vector2 GetAttackOrigin()
+        {
+            if (firePoint != null)
+            {
+                return firePoint.position;
+            }
+
+            if (attackZone != null)
+            {
+                return attackZone.position;
+            }
+
+            return transform.position;
+        }
+        
         #region Ataque CAC
 
         private void DoCloseCombatAttack()
@@ -188,7 +239,9 @@
             canAttack1 = false;
             attack1Counter = 0f;
 
-            PlayAttackAnimation(attack1Hash);
+            Vector2 currentAttackDirection = GetDirectionFromAttackZone();
+
+            PlayAttackAnimation(attack1Hash, currentAttackDirection);
         }
 
         #endregion
@@ -200,16 +253,11 @@
             canShoot = false;
             shootCounter = 0f;
 
-            pendingShootDirection = Vector2.right;
-
-            if (playerMovement != null)
-            {
-                pendingShootDirection = playerMovement.attackDirection;
-            }
-
             hasPendingShot = true;
 
-            PlayAttackAnimation(attack2Hash);
+            Vector2 currentAttackDirection = GetDirectionFromAttackZone();
+
+            PlayAttackAnimation(attack2Hash, currentAttackDirection);
         }
         
         public void Shoot()
@@ -225,20 +273,17 @@
                 return;
             }
 
-            if (firePoint == null)
-            {
-                Debug.LogWarning("No hay FirePoint asignado.", this);
-                return;
-            }
-
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(dmgToPlayer);
+                playerHealth.TakeDamage(dmgToPlayer, false);
             }
+
+            Vector2 shootDirection = GetDirectionFromAttackZone();
+            Vector2 spawnPosition = GetAttackOrigin();
 
             GameObject bullet = Instantiate(
                 bulletPrefab,
-                firePoint.position,
+                spawnPosition,
                 Quaternion.identity
             );
 
@@ -246,7 +291,7 @@
 
             if (bulletScript != null)
             {
-                bulletScript.SetDirection(pendingShootDirection);
+                bulletScript.SetDirection(shootDirection);
             }
         }
         
@@ -259,25 +304,19 @@
         {
             if (!canDoSpecial) return;
 
-            pendingRayDirection = Vector2.right;
-
-            if (playerMovement != null)
-            {
-                pendingRayDirection = playerMovement.attackDirection;
-            }
-
-            if (pendingRayDirection.sqrMagnitude <= 0.01f)
-            {
-                pendingRayDirection = Vector2.right;
-            }
-
             hasPendingRay = true;
 
-            // Consumir ataque especial
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageFromSpecial, false);
+            }
+
             canDoSpecial = false;
             killCounter = 0;
 
-            PlayAttackAnimation(attack3Hash);
+            Vector2 currentAttackDirection = GetDirectionFromAttackZone();
+
+            PlayAttackAnimation(attack3Hash, currentAttackDirection);
         }
         
         public void CastSpecialRay()
@@ -293,8 +332,8 @@
                 return;
             }
 
-            Vector2 origin = firePoint.position;
-            Vector2 direction = pendingRayDirection.normalized;
+            Vector2 origin = GetAttackOrigin();
+            Vector2 direction = GetDirectionFromAttackZone();
 
             if (direction.sqrMagnitude <= 0.01f)
             {
@@ -335,14 +374,17 @@
                 Collider2D enemyCollider = enemyHits[i].collider;
 
                 if (enemyCollider == null) continue;
+                
+                EnemyDeath enemyDeath = enemyCollider.GetComponentInParent<EnemyDeath>();
 
-                enemyCollider.SendMessageUpwards(
-                    "TakeDamage",
-                    rayDamage,
-                    SendMessageOptions.DontRequireReceiver
-                );
-
-                Debug.Log("Rayo dañó a: " + enemyCollider.name);
+                if (enemyDeath != null)
+                {
+                    enemyDeath.GetDmgEnemy(rayDamage);
+                }
+                else
+                {
+                    Debug.LogWarning("No se encontró EnemyDeath en: " + enemyCollider.name);
+                }
             }
 
             // 3. Instanciar el prefab visual del rayo.
@@ -398,16 +440,11 @@
         #endregion
         
         // Lammar animaciones
-        private void PlayAttackAnimation(int attackHash)
+        private void PlayAttackAnimation(int attackHash, Vector2 attackDirection)
         {
             if (animator == null) return;
 
-            bool attackingUp = false;
-
-            if (playerMovement != null)
-            {
-                attackingUp = playerMovement.attackDirection == Vector2.up;
-            }
+            bool attackingUp = attackDirection == Vector2.up;
 
             animator.SetFloat(attackUpHash, attackingUp ? 1f : 0f);
             animator.SetTrigger(attackHash);
