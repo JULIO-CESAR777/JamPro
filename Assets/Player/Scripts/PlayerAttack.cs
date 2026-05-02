@@ -15,12 +15,13 @@ public class PlayerAttack : MonoBehaviour
         attack1Counter = 0f;
     }
 
-    void Update()
+    void Update() 
     {
         
         
         if (Input.GetKey(KeyCode.Mouse0))
         {
+          
             dmgZone.SetActive(true);
         }
     }

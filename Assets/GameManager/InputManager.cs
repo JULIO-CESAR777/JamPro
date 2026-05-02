@@ -121,6 +121,8 @@ public class InputManager : MonoBehaviour
                     CheckAndChangeInputType();
                 }
             }
+
+           
         }
     
         private int framesToCheckInput = 60;
@@ -163,7 +165,7 @@ public class InputManager : MonoBehaviour
                 OnChangeInputType(currentInputType);
             }
         }
-        
+       
         
         // Cambiar el Input de cualquiera, mas que nada para detectar de primera instancia que tipo de input va a recibir
         void CheckAndChangeInputType()

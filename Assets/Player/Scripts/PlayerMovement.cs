@@ -100,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         if (inputManager == null) return;
 
         horizontal = inputManager.GetAXis(AXIS.HORIZONTAL);
+        print("horizontal: " + horizontal);
 
         if (horizontal > 0.01f)
         {
