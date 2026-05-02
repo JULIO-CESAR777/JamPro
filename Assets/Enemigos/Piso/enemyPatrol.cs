@@ -12,6 +12,9 @@ public class EnemyPatrol : MonoBehaviour
     public float speed = 2f;
     public Animator anim;
 
+    public C_EnemyDmg enemyDmg;
+
+
     [Header("Ataque")]
     public float damage = 20f;
     public float knockbackForce = 12f;
@@ -50,6 +53,10 @@ public class EnemyPatrol : MonoBehaviour
                     isPaused = true;
             }
 
+            enemyDmg = GetComponentInChildren<C_EnemyDmg>();
+
+
+
 
         originalScaleX = Mathf.Abs(transform.localScale.x);
             attackCounter = 0f;
@@ -77,11 +84,11 @@ public class EnemyPatrol : MonoBehaviour
 
         if (direction.x > 0.01f)
         {
-            transform.localScale = new Vector3(-originalScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(originalScaleX, transform.localScale.y, transform.localScale.z);
         }
         else if (direction.x < -0.01f)
         {
-            transform.localScale = new Vector3(originalScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-originalScaleX, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -96,8 +103,6 @@ public class EnemyPatrol : MonoBehaviour
             isAttacking = false;
             attackCounter = 0f;
 
-            if (dmgZone != null)
-                dmgZone.SetActive(false);
         }
     }
 
@@ -106,6 +111,7 @@ public class EnemyPatrol : MonoBehaviour
         PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
 
         if (player == null) return;
+        
 
         player.TakeDamage((int)damage);
 
@@ -124,8 +130,7 @@ public class EnemyPatrol : MonoBehaviour
         isAttacking = true;
         attackCounter = 0f;
 
-        if (dmgZone != null)
-            dmgZone.SetActive(true);
+        
 
         Debug.Log("DañoPlayer");
     }
@@ -133,10 +138,11 @@ public class EnemyPatrol : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
+
         attackCounter = 0f;
 
-        if (dmgZone != null)
-            dmgZone.SetActive(true);
+        anim.SetTrigger("Attack");
+       
     }
 
     public void SetPatrolPoints(Transform a, Transform b)
@@ -160,5 +166,15 @@ public class EnemyPatrol : MonoBehaviour
         anim.speed = isPaused ? 0f : 1f;
     }
 
-    //CUANDO MUERA USAR ESTO GetComponent<EnemyDeath>().Die();
+    public void attacckk()
+    {
+        if (enemyDmg != null)
+        {
+            enemyDmg.DealDamage();
+        }
+       
+
+    }
+
+ 
 }
