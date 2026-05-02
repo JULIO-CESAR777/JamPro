@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float deceleration = 50f;
     public float airAcceleration = 25f;
     public float airDeceleration = 20f;
-
+    
     [Header("Salto")]
     public float jumpPower = 8f;
     public float fallMultiplier = 2.5f;
@@ -67,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private float originalGravityScale;
     private Vector3 originalScale;
+    
+    private Vector2 savedVelocity;
+    private float savedAngularVelocity;
+    private RigidbodyType2D savedBodyType;
 
     private void Awake()
     {
@@ -108,15 +112,40 @@ public class PlayerMovement : MonoBehaviour
     public void OnChangeGameStateCallback(GameState newState)
     {
         isPaused = newState != GameState.Play;
+        if (rb == null) return;
 
         if (isPaused)
         {
+            savedVelocity = rb.linearVelocity;
+            savedAngularVelocity = rb.angularVelocity;
+            savedBodyType = rb.bodyType;
+
             rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            // Esto evita que la gravedad lo siga moviendo.
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            
+        }
+        else
+        {
+            rb.bodyType = savedBodyType;
+
+            rb.linearVelocity = savedVelocity;
+            rb.angularVelocity = savedAngularVelocity;
+            
+            
         }
     }
 
     private void Update()
     {
+
+        if (inputManager.IsButtonDown(BUTTONS.START) && !PlayerHealth.GetInstance().isDead)
+        {
+            gm.ChangeGameState(isPaused ? GameState.Play : GameState.Pause);
+        }
+        
         if (isPaused) return;
         if (inputManager == null) return;
 
