@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+
+    //PAUSAAAAA
+    private GameManager gm;
+    [SerializeField] private bool isPaused = false;
+
     public Transform pointA;
     public Transform pointB;
     public float speed = 2f;
@@ -34,14 +39,27 @@ public class EnemyPatrol : MonoBehaviour
 
                 currentPoint = distA < distB ? pointA : pointB;
             }
+            anim = GetComponent<Animator>();
 
-            originalScaleX = Mathf.Abs(transform.localScale.x);
+            gm = GameManager.instance;
+            if (gm != null)
+            {
+                gm.onChangeGameState += OnChangeGameStateCallback;
+
+                if (gm.gameState == GameState.Pause)
+                    isPaused = true;
+            }
+
+
+        originalScaleX = Mathf.Abs(transform.localScale.x);
             attackCounter = 0f;
         
     }
 
     void FixedUpdate()
     {
+        if (isPaused) return;
+
         if (isAttacking)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -133,6 +151,13 @@ public class EnemyPatrol : MonoBehaviour
         float distB = Vector2.Distance(transform.position, pointB.position);
 
         currentPoint = distA < distB ? pointA : pointB;
+    }
+
+    public void OnChangeGameStateCallback(GameState newState)
+    {
+        isPaused = newState != GameState.Play;
+
+        anim.speed = isPaused ? 0f : 1f;
     }
 
     //CUANDO MUERA USAR ESTO GetComponent<EnemyDeath>().Die();

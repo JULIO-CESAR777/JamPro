@@ -57,12 +57,14 @@ public class PlayerTransition : MonoBehaviour
         yield return new WaitForSeconds(blackScreenWaitTime);
 
         yield return StartCoroutine(FadeBlackScreen(1f, 0f, fadeFromBlackDuration));
+        Debug.Log("Transición a: " + targetIndex);
 
         isTransitioning = false;
     }
 
     private IEnumerator FadeBlackScreen(float startAlpha, float endAlpha, float duration)
     {
+
         float counter = 0f;
 
         while (counter < duration)
