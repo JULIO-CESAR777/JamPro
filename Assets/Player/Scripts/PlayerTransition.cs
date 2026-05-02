@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +7,12 @@ public class PlayerTransition : MonoBehaviour
 {
     [SerializeField] private Image blackScreen;
     [SerializeField] private Camera cam;
-    
     [SerializeField] private List<Transform> cameraPoints;
 
     [Header("Transición")]
-    [SerializeField] private float fadeToBlackDuration = 0.5f;
-    [SerializeField] private float fadeFromBlackDuration = 0.5f;
-    [SerializeField] private float blackScreenWaitTime = 0.4f;
+    [SerializeField] private float fadeToBlackDuration = 0.3f;
+    [SerializeField] private float fadeFromBlackDuration = 0.3f;
+    [SerializeField] private float blackScreenWaitTime = 0.3f;
 
     private bool isTransitioning;
     private int index;
@@ -24,37 +22,49 @@ public class PlayerTransition : MonoBehaviour
         SetBlackScreenAlpha(0f);
         isTransitioning = false;
         index = 0;
-        cam.transform.position = cameraPoints[index].position;
+
+        if (cameraPoints.Count > 0)
+            cam.transform.position = cameraPoints[index].position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Transition") && !isTransitioning)
+        if (isTransitioning) return;
+
+        TransitionTrigger trigger = other.GetComponent<TransitionTrigger>();
+
+        if (trigger != null)
         {
-            index++;
-            StartCoroutine(DoTransition());
+            if (trigger.targetIndex == index)
+                return;
+
+            StartCoroutine(DoTransition(trigger.targetIndex));
         }
     }
 
-    private IEnumerator DoTransition()
+    private IEnumerator DoTransition(int targetIndex)
     {
+        if (targetIndex == index)
+            yield break;
+
         isTransitioning = true;
 
-        // Fade de transparente a negro
         yield return StartCoroutine(FadeBlackScreen(0f, 1f, fadeToBlackDuration));
 
-        // Aquí puedes mover al jugador, cambiar cámara, cargar zona, etc.
+        index = Mathf.Clamp(targetIndex, 0, cameraPoints.Count - 1);
         cam.transform.position = cameraPoints[index].position;
+
         yield return new WaitForSeconds(blackScreenWaitTime);
 
-        // Fade de negro a transparente
         yield return StartCoroutine(FadeBlackScreen(1f, 0f, fadeFromBlackDuration));
+        Debug.Log("Transición a: " + targetIndex);
 
         isTransitioning = false;
     }
 
     private IEnumerator FadeBlackScreen(float startAlpha, float endAlpha, float duration)
     {
+
         float counter = 0f;
 
         while (counter < duration)

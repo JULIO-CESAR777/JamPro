@@ -16,7 +16,7 @@ public class PlatformMovement : MonoBehaviour
         currentTarget = pointB;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (waiting) return;
 
@@ -43,20 +43,5 @@ public class PlatformMovement : MonoBehaviour
         waiting = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player") &&
-            collision.contacts[0].normal.y < -0.5f)
-        {
-            collision.transform.SetParent(transform);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-        {
-            collision.transform.SetParent(null);
-        }
-    }
+  
 }
