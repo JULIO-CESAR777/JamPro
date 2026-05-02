@@ -11,6 +11,12 @@ public class EnemyPatrol : MonoBehaviour
     private Transform currentPoint;
     private float originalScaleX;
 
+    private float Damage = 15f;
+
+    private bool isAttacking;
+    public float attackDuration = 1f;
+    private float attackCounter = 0f;
+
     [SerializeField] GameObject dmgZone;
 
     void Start()
@@ -23,6 +29,7 @@ public class EnemyPatrol : MonoBehaviour
         currentPoint = distA < distB ? pointA : pointB;
 
         originalScaleX = Mathf.Abs(transform.localScale.x);
+        attackCounter = 0f;
     }
 
     void FixedUpdate()
@@ -31,7 +38,7 @@ public class EnemyPatrol : MonoBehaviour
 
         rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
 
-        
+
 
         if (Vector2.Distance(rb.position, currentPoint.position) < 0.15f)
         {
@@ -46,11 +53,32 @@ public class EnemyPatrol : MonoBehaviour
             }
         }
 
-        
+        if (isAttacking)
+        {
+            attackCounter += Time.deltaTime;
+
+            // Apaga la zona de daño
+            if (attackCounter >= attackDuration)
+            {
+                dmgZone.SetActive(false);
+            }
+
+
+
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        PlayerHealth player= collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (player != null)
+        {
+            player.TakeDamage(20);
+            Debug.Log("DañoPlayer");
+        }
+
+       
     }
 }
