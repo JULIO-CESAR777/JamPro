@@ -34,8 +34,8 @@ public class EnemyPatrol : MonoBehaviour
 
             if (pointA != null && pointB != null)
             {
-                float distA = Vector2.Distance(transform.position, pointA.position);
-                float distB = Vector2.Distance(transform.position, pointB.position);
+                float distA = Mathf.Abs(transform.position.x - pointA.position.x);
+                float distB = Mathf.Abs(transform.position.x - pointB.position.x);
 
                 currentPoint = distA < distB ? pointA : pointB;
             }
@@ -70,7 +70,7 @@ public class EnemyPatrol : MonoBehaviour
 
         rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
 
-        if (Vector2.Distance(rb.position, currentPoint.position) < 0.15f)
+        if (Mathf.Abs(rb.position.x - currentPoint.position.x) < 0.15f)
         {
             currentPoint = currentPoint == pointA ? pointB : pointA;
         }
@@ -147,8 +147,8 @@ public class EnemyPatrol : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
-        float distA = Vector2.Distance(transform.position, pointA.position);
-        float distB = Vector2.Distance(transform.position, pointB.position);
+        float distA = Mathf.Abs(transform.position.x - pointA.position.x);
+        float distB = Mathf.Abs(transform.position.x - pointB.position.x);
 
         currentPoint = distA < distB ? pointA : pointB;
     }

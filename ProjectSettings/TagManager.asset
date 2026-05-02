@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - End
   - Transition
+  - Platform
   layers:
   - Default
   - TransparentFX
