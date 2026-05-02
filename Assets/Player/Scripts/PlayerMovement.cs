@@ -65,9 +65,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private string movementParameterName = "Movement";
     private int movementHash;
-
-    [Header("UI pausa")]
-    [SerializeField] private GameObject pauseMenu;
     
     private BoxCollider2D attackZoneCollider;
 
@@ -100,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = false;
         originalScale = transform.localScale;
-        pauseMenu.SetActive(false);
 
         gm = GameManager.instance;
         if (gm != null)
@@ -139,9 +135,6 @@ public class PlayerMovement : MonoBehaviour
             // Esto evita que la gravedad lo siga moviendo.
             rb.bodyType = RigidbodyType2D.Kinematic;
             
-            // UI de pausa
-            pauseMenu.SetActive(true);
-            
         }
         else
         {
@@ -150,8 +143,6 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = savedVelocity;
             rb.angularVelocity = savedAngularVelocity;
             
-            // UI de pausa
-            pauseMenu.SetActive(false);
         }
 
         if (!PlayerHealth.GetInstance().isDead)
