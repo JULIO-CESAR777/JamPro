@@ -32,13 +32,9 @@ public class EnemyDeath : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if(collision.CompareTag("DmgZone"))
-        {
-            GetDmgEnemy(PlayerAttack.GetInstance().CloseCombatDmg);
-            print("CACAttack");
-        }
-    }
+  
+
+  
+  
+
 }
