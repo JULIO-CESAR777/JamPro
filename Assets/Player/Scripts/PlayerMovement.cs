@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Salto")]
     public float jumpPower = 8f;
+    public float riseMultiplier = 1.8f;
     public float fallMultiplier = 2.5f;
     public float minimalFallMultiplier = 2f;
     public float jumpCutMultiplier = 0.5f;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private string movementParameterName = "Movement";
     private int movementHash;
-
+    
     private BoxCollider2D attackZoneCollider;
 
     public Vector2 attackDirection { get; private set; } = Vector2.right;
@@ -116,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             gm.onChangeGameState -= OnChangeGameStateCallback;
         }
     }
-
+    
     public void OnChangeGameStateCallback(GameState newState)
     {
         isPaused = newState != GameState.Play;
@@ -133,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Esto evita que la gravedad lo siga moviendo.
             rb.bodyType = RigidbodyType2D.Kinematic;
+            
         }
         else
         {
@@ -140,8 +142,14 @@ public class PlayerMovement : MonoBehaviour
 
             rb.linearVelocity = savedVelocity;
             rb.angularVelocity = savedAngularVelocity;
+            
         }
-        animator.speed = isPaused ? 0f : 1f;
+
+        if (!PlayerHealth.GetInstance().isDead)
+        {
+            animator.speed = isPaused ? 0f : 1f;
+        }
+        
     }
 
     private void Update()
@@ -273,15 +281,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateJumpFall()
     {
+        // Cuando va cayendo
         if (rb.linearVelocity.y < 0f)
         {
-            rb.linearVelocity += Vector2.up * (Physics2D.gravity.y *
-                                               (fallMultiplier - 1f) * Time.fixedDeltaTime);
+            rb.linearVelocity += Vector2.up * 
+                                 (Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime);
         }
+        // Cuando va subiendo y todavía mantiene el botón
+        else if (rb.linearVelocity.y > 0f && jumpHeld)
+        {
+            rb.linearVelocity += Vector2.up * 
+                                 (Physics2D.gravity.y * (riseMultiplier - 1f) * Time.fixedDeltaTime);
+        }
+        // Cuando va subiendo pero ya soltó el botón
         else if (rb.linearVelocity.y > 0f && !jumpHeld)
         {
-            rb.linearVelocity += Vector2.up * (Physics2D.gravity.y *
-                                               (minimalFallMultiplier - 1f) * Time.fixedDeltaTime);
+            rb.linearVelocity += Vector2.up * 
+                                 (Physics2D.gravity.y * (minimalFallMultiplier - 1f) * Time.fixedDeltaTime);
         }
     }
     

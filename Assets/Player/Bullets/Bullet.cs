@@ -16,10 +16,12 @@ public class Bullet : MonoBehaviour
     private Vector2 savedVelocity;
     private float savedAngularVelocity;
     private RigidbodyType2D savedBodyType;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -90,6 +92,11 @@ public class Bullet : MonoBehaviour
 
             rb.linearVelocity = savedVelocity;
             rb.angularVelocity = savedAngularVelocity;
+        }
+        
+        if (!PlayerHealth.GetInstance().isDead)
+        {
+            animator.speed = isPaused ? 0f : 1f;
         }
     }
 
