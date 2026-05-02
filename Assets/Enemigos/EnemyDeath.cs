@@ -17,6 +17,8 @@ public class EnemyDeath : MonoBehaviour
         if (spawner != null)
             spawner.EnemyDied();
 
+        PlayerAttack.GetInstance().killCounter++;
+
         Destroy(gameObject);
     }
 
@@ -27,6 +29,16 @@ public class EnemyDeath : MonoBehaviour
         {
 
             Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if(collision.CompareTag("DmgZone"))
+        {
+            GetDmgEnemy(PlayerAttack.GetInstance().CloseCombatDmg);
+            print("CACAttack");
         }
     }
 }
