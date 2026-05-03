@@ -15,6 +15,7 @@ public class PauseSystem : MonoBehaviour
     
     private void Start()
     {
+        Cursor.visible = false;
         gm = GameManager.instance;
         if (gm != null)
         {
@@ -39,12 +40,14 @@ public class PauseSystem : MonoBehaviour
 
         if (PlayerHealth.win && !PlayerHealth.isDead)
         {
+            Cursor.visible = true;
             WinPanel.SetActive(true);
             return;
         }
         
         if (PlayerHealth.isDead)
         {
+            Cursor.visible = true;
             DeathPanel.SetActive(true);   
             return;
         }
@@ -52,9 +55,11 @@ public class PauseSystem : MonoBehaviour
         if (isPaused)
         {
             pausePanel.SetActive(true);
+            Cursor.visible = true;
         }
         else
         {
+            Cursor.visible = false;
             pausePanel.SetActive(false);
             settignsPanel.SetActive(false);
         }
@@ -69,10 +74,12 @@ public class PauseSystem : MonoBehaviour
     public void ClosePause()
     {
         gm.ChangeGameState(isPaused ? GameState.Play : GameState.Pause);
+
     }
     
     public void GoToMainMenu()
     {
+      
         SceneManager.LoadScene(0);
     }
 
