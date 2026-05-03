@@ -197,6 +197,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &105232838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3333753709416936590, guid: a86ed13dd16af934db32a6517bf7e377, type: 3}
+  m_PrefabInstance: {fileID: 1963357966837294024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &546584418
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +551,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1106358809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1154394399186118776, guid: a86ed13dd16af934db32a6517bf7e377, type: 3}
+  m_PrefabInstance: {fileID: 1963357966837294024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1208897601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 497088368437718391, guid: a86ed13dd16af934db32a6517bf7e377, type: 3}
@@ -1216,6 +1226,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1859439740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3512002041288960115, guid: a86ed13dd16af934db32a6517bf7e377, type: 3}
+  m_PrefabInstance: {fileID: 1963357966837294024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1963357966837294024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1329,6 +1344,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 247681224079927954, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
+      propertyPath: 'CargaDeCruz.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1106358809}
+    - target: {fileID: 247681224079927954, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
+      propertyPath: 'CargaDeCruz.Array.data[1]'
+      value: 
+      objectReference: {fileID: 105232838}
+    - target: {fileID: 247681224079927954, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
+      propertyPath: 'CargaDeCruz.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1859439740}
     - target: {fileID: 1910162217085805912, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
       propertyPath: slider
       value: 

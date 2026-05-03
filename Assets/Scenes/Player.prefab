@@ -309,7 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   win: 0
   health: 0
-  damagePerSecond: 6.66
+  damagePerSecond: 0
   isDead: 0
   dieParameterName: isDead
   damageParameterName: isDamage
@@ -377,10 +377,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8812565233717493985, guid: 0afa122e8d2380e42aa1c3a019ccf994, type: 3}
   firePoint: {fileID: 4880678420588247758}
   canShoot: 0
-  shootCooldown: 0.4
+  shootCooldown: 1
   dmgToPlayer: 0
   specialBulletPrefab: {fileID: 5033015498591111171, guid: 69b6b2f86989c664db1a8997b9b5b69e, type: 3}
-  killToChargeAttack: 1
+  killToChargeAttack: 3
   killCounter: 0
   canDoSpecial: 0
   damageFromSpecial: 0
@@ -399,6 +399,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   specialBulletDuration: 0.12
+  CargaDeCruz:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   attack1ParameterName: Attack1
   attackUpParameterName: AttackUp
   attack2ParameterName: Attack2
