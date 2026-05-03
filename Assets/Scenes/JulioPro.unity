@@ -40209,7 +40209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 247681224079927954, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
       propertyPath: damageFromSpecial
-      value: 30
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 247681224079927954, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
       propertyPath: 'CargaDeCruz.Array.data[0]'
@@ -40229,7 +40229,7 @@ PrefabInstance:
       objectReference: {fileID: 862727095}
     - target: {fileID: 1910162217085805912, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
       propertyPath: damagePerSecond
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2397806569249309688, guid: 538b5340fc57ba046b28109eb88a3797, type: 3}
       propertyPath: m_LocalPosition.x

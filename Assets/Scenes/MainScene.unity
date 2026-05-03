@@ -1404,6 +1404,53 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &883099637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883099639}
+  - component: {fileID: 883099638}
+  m_Layer: 0
+  m_Name: CursorCustom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &883099638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883099637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05b6386ba178cd41bb01f706973a511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomCursor
+  cursorTexture: {fileID: 2800000, guid: d3b583925b739984d8f59b44865e21db, type: 3}
+  hotSpot: {x: 0, y: 0}
+  cursorMode: 0
+--- !u!4 &883099639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883099637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 138.90157, y: -0.12594, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &960220105
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,3 +4548,4 @@ SceneRoots:
   - {fileID: 1331926142}
   - {fileID: 1431599244}
   - {fileID: 1331560272}
+  - {fileID: 883099639}

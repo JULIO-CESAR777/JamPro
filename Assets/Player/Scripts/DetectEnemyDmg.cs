@@ -13,7 +13,8 @@ public class DetectEnemyDmg : MonoBehaviour
             {
 
                 enemy.GetDmgEnemy(PlayerAttack.GetInstance().CloseCombatDmg);
-                print("dañodelplayer");
+                PlayerHealth.GetInstance().Heal(5);
+                print("daï¿½odelplayer");
             }
             
 

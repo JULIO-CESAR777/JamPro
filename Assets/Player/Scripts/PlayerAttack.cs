@@ -391,6 +391,7 @@
                 if (enemyDeath != null)
                 {
                     enemyDeath.GetDmgEnemy(rayDamage);
+                    PlayerHealth.GetInstance().Heal(5);
                 }
                 else
                 {
