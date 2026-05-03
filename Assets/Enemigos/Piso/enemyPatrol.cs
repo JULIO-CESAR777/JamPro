@@ -65,7 +65,11 @@ public class EnemyPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isPaused) return;
+        if (isPaused)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
         if (isAttacking)
         {
@@ -163,7 +167,13 @@ public class EnemyPatrol : MonoBehaviour
     {
         isPaused = newState != GameState.Play;
 
-        anim.speed = isPaused ? 0f : 1f;
+        if (rb != null && isPaused)
+            rb.linearVelocity = Vector2.zero;
+
+        if (anim != null)
+            anim.speed = isPaused ? 0f : 1f;
+        
+        
     }
 
     public void attacckk()

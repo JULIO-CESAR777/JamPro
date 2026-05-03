@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementVolador
   isPaused: 0
-  bulletPrefab: {fileID: 4794028021409440927, guid: 66ac6a836f166cf4681f23e2141680ed, type: 3}
+  bulletPrefab: {fileID: 4962358861021071825, guid: 8555e06944d21de4c84fd72d1b850060, type: 3}
   firePoint: {fileID: 9164173632056616025}
   shootCooldown: 1.2
   tolerance: 0.2

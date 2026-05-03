@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bull_FlyEnemy : MonoBehaviour
@@ -5,6 +6,12 @@ public class Bull_FlyEnemy : MonoBehaviour
    
     public float speed = 6f;
     public int damage = 10;
+
+
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
 
     void Update()
     {
