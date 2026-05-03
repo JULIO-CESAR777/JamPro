@@ -1,13 +1,16 @@
 using UnityEngine;
+using System.Collections;
 
 public class CombatZone : MonoBehaviour
 {
     [Header("Bloqueos")]
-    [SerializeField] private Collider2D leftBlock;
-    [SerializeField] private Collider2D rightBlock;
+    [SerializeField] private GameObject leftBlock;
+    [SerializeField] private GameObject rightBlock;
 
     [Header("Spawner")]
     [SerializeField] private EnemySpawner spawner;
+
+    private Animator animRight;
 
     private bool activated = false;
     private bool cleared = false;
@@ -17,11 +20,12 @@ public class CombatZone : MonoBehaviour
     private void Awake()
     {
         triggerCollider = GetComponent<Collider2D>();
+        animRight = rightBlock.GetComponent<Animator>();
     }
 
     private void Start()
     {
-        OpenZone();
+        
 
         if (spawner != null)
             spawner.SetCombatZone(this);
@@ -49,7 +53,8 @@ public class CombatZone : MonoBehaviour
         if (cleared) return;
 
         cleared = true;
-        OpenZone();
+                
+        StartCoroutine(OpenZone());
 
         if (triggerCollider != null)
             triggerCollider.enabled = false;
@@ -58,18 +63,25 @@ public class CombatZone : MonoBehaviour
     private void CloseZone()
     {
         if (leftBlock != null)
-            leftBlock.enabled = true;
+        {
+            leftBlock.SetActive(true);
+        }
 
         if (rightBlock != null)
-            rightBlock.enabled = true;
+        {
+            rightBlock.SetActive(true);
+        }
     }
 
-    private void OpenZone()
+    private IEnumerator OpenZone()
     {
-        if (leftBlock != null)
-            leftBlock.enabled = false;
-
         if (rightBlock != null)
-            rightBlock.enabled = false;
+        {
+            animRight.SetTrigger("Subir");
+
+            yield return new WaitForSeconds(1f);
+
+            rightBlock.SetActive(false);
+        }
     }
 }
