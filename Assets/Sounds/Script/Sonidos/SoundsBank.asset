@@ -148,3 +148,18 @@ MonoBehaviour:
     priority: 100
     musicDuckAmount: 0
     musicDuckSeconds: 0
+  - id: vfx_JesusChrist
+    clips:
+    - {fileID: 8300000, guid: 65501b83bb2a7314e9f366a3624f1036, type: 3}
+    outputGroup: {fileID: 6073045706362552643, guid: da27cfc65450f0c458edac9d9243f5ca, type: 2}
+    loop: 0
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 25
+    volume: 0.529
+    pitchRandom: {x: 0.95, y: 1.05}
+    maxSimultaneous: 5
+    cooldown: 0.5
+    priority: 100
+    musicDuckAmount: 0
+    musicDuckSeconds: 0

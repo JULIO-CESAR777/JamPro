@@ -327,7 +327,7 @@
             killCounter = 0;
 
             Vector2 currentAttackDirection = GetDirectionFromAttackZone();
-
+            AudioManager.I.Play("vfx_JesusChrist");
             PlayAttackAnimation(attack3Hash, currentAttackDirection);
         }
         
@@ -464,9 +464,9 @@
             if (animator == null) return;
 
             bool attackingUp = attackDirection == Vector2.up;
-
+          
             animator.SetFloat(attackUpHash, attackingUp ? 1f : 0f);
             animator.SetTrigger(attackHash);
             AudioManager.I.Play("vfx_CacPlayer");
-    }
+        }
     }
