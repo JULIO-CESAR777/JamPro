@@ -8,7 +8,12 @@ public class EnemyDeath : MonoBehaviour
 
     private Animator anim;
 
-    
+
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     public void SetSpawner(EnemySpawner enemySpawner)
     {
         spawner = enemySpawner;
@@ -30,11 +35,13 @@ public class EnemyDeath : MonoBehaviour
         if (health <= 0)
         {
             anim.SetTrigger("Die");
-            Die();
+            print("mori");
+            
         }
         else
         {
             anim.SetTrigger("Injured");
+            print("herido");
 
         }
     }

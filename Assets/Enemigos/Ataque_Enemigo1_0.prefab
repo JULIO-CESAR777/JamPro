@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 1647578412561365720}
   - component: {fileID: 6599098781478750943}
   - component: {fileID: 3395393744412731167}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: DmgCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

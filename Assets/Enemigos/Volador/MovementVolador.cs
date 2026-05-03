@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovementVolador : MonoBehaviour
 {
@@ -17,6 +17,12 @@ public class MovementVolador : MonoBehaviour
 
     private bool playerInsideZone = false;
     private float nextShootTime;
+
+    [Header("Ataque")]
+    public float damage = 20f;
+    public float knockbackForce = 12f;
+    public float knockbackUpForce = 3f;
+    public float attackDuration = 0.25f;
 
     void Start()
     {
@@ -50,7 +56,7 @@ public class MovementVolador : MonoBehaviour
         {
             if (Time.time >= nextShootTime)
             {
-                Shoot();
+                anim.SetTrigger("Attack");
                 nextShootTime = Time.time + shootCooldown;
             }
         }
@@ -64,6 +70,8 @@ public class MovementVolador : MonoBehaviour
 
     void Shoot()
     {
+
+       
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
     }
 
@@ -81,5 +89,32 @@ public class MovementVolador : MonoBehaviour
     }
     //CUANDO MUERA USAR ESTO GetComponent<EnemyDeath>().Die();
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (player == null) return;
+
+
+        player.TakeDamage((int)damage, true);
+
+        Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (playerRb != null)
+        {
+            Vector2 direction = (collision.transform.position - transform.position).normalized;
+            direction.y = knockbackUpForce;
+            direction.Normalize();
+
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+        }
+
+      
+
+
+
+        Debug.Log("Da�oPlayer");
+    }
 
 }

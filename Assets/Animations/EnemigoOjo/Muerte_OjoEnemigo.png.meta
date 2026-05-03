@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,7 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,12 +95,144 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_10
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 56
+        width: 240
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc4cdc9f5e3a9f47adb464824c0748e
+      internalID: 1521843066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_11
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 52
+        width: 218
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d65ad7811f4ebd42921904e5f76fd40
+      internalID: -1635480580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_14
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 50
+        width: 190
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a212feb041128b44be531950ed791af
+      internalID: 1159799962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_18
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 50
+        width: 126
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d014f170c7d2394fae3d95db87c283e
+      internalID: 1297415380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_29
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 48
+        width: 123
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6d022357d8323459388650fff03319
+      internalID: -120076385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte_OjoEnemigo_0
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 52
+        width: 147
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80f50ba9cb42e1e48b96356a9e151dbe
+      internalID: -270792795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 70323e518c2690c4c891f5690d972305
     internalID: 0
     vertices: []
     indices: 
@@ -108,8 +240,43 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Muerte_OjoEnemigo_0: -270792795
+      Muerte_OjoEnemigo_1: 2035195696
+      Muerte_OjoEnemigo_10: 1521843066
+      Muerte_OjoEnemigo_11: -1635480580
+      Muerte_OjoEnemigo_12: -1277158745
+      Muerte_OjoEnemigo_13: -1214594381
+      Muerte_OjoEnemigo_14: 1159799962
+      Muerte_OjoEnemigo_15: 1602422398
+      Muerte_OjoEnemigo_16: 666319162
+      Muerte_OjoEnemigo_17: -2113272208
+      Muerte_OjoEnemigo_18: 1297415380
+      Muerte_OjoEnemigo_19: -154976225
+      Muerte_OjoEnemigo_2: 848504495
+      Muerte_OjoEnemigo_20: -1271241498
+      Muerte_OjoEnemigo_21: 33944941
+      Muerte_OjoEnemigo_22: -2117132922
+      Muerte_OjoEnemigo_23: -2062786238
+      Muerte_OjoEnemigo_24: 463724099
+      Muerte_OjoEnemigo_25: -390954145
+      Muerte_OjoEnemigo_26: -650618505
+      Muerte_OjoEnemigo_27: -1953562704
+      Muerte_OjoEnemigo_28: -930787956
+      Muerte_OjoEnemigo_29: -120076385
+      Muerte_OjoEnemigo_3: -1304908818
+      Muerte_OjoEnemigo_30: 413342462
+      Muerte_OjoEnemigo_31: 721653438
+      Muerte_OjoEnemigo_32: 161027339
+      Muerte_OjoEnemigo_4: -1999859917
+      Muerte_OjoEnemigo_5: -2028768295
+      Muerte_OjoEnemigo_6: -205564540
+      Muerte_OjoEnemigo_7: 760672553
+      Muerte_OjoEnemigo_8: 1512338764
+      Muerte_OjoEnemigo_9: -778873859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
