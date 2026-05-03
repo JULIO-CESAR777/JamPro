@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -70,6 +71,11 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void StopAnimator()
+    {
+        animator.speed = 0;
     }
 
     public void TakeDamage(float damage, bool fromEnemy)

@@ -483,7 +483,7 @@ MonoBehaviour:
     startPosition: {x: 0, y: 0, z: 0}
   moveOppositeToPlayer: 1
   useLimits: 1
-  maxOffsetX: 2.5
+  maxOffsetX: 0.9
   maxOffsetY: 1
   useSmooth: 1
   smoothSpeed: 8

@@ -189,7 +189,11 @@
             
             if (inputManager.IsButtonDown(BUTTONS.SELECT) && canDoSpecial) // Boton R
             {
-                DoSpecial();    
+                DoSpecial();
+                foreach (var item in CargaDeCruz)
+                {
+                    item.SetActive(false);
+                }
             }
             
         }
