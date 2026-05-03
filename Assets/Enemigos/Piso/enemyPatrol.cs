@@ -146,7 +146,8 @@ public class EnemyPatrol : MonoBehaviour
         attackCounter = 0f;
 
         anim.SetTrigger("Attack");
-       
+
+        AudioManager.I.Play("vfx_AttackFloorEnemy");
     }
 
     public void SetPatrolPoints(Transform a, Transform b)

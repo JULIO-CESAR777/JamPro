@@ -34,12 +34,13 @@ public class EnemyDeath : MonoBehaviour
         if (health <= 0)
         {
             anim.SetTrigger("Die");
-            print("mori");   
+            AudioManager.I.Play("vfx_dieFloorEnemy");
+            
         }
         else
         {
             anim.SetTrigger("Injured");
-            print("herido");
+           
 
         }
     }

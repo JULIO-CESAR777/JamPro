@@ -106,6 +106,7 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Ground"))
         {
+            AudioManager.I.Play("vfx_ImpactBulletPlayer");
             Destroy(gameObject);
         }
 
@@ -117,9 +118,10 @@ public class Bullet : MonoBehaviour
             {
                 enemyDeath.GetDmgEnemy(10);
                 print("daño recibido enemigo");
-
+                AudioManager.I.Play("vfx_ImpactBulletPlayer");
                 Destroy(gameObject);
             }
         }
+        
     }
 }

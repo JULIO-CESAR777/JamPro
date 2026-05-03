@@ -98,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.I.Play("vfx_dieplayer");
         isDead = true;
         gm.ChangeGameState(GameState.Pause);
         animator.SetTrigger(isDeadHash);

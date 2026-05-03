@@ -297,6 +297,7 @@
                 spawnPosition,
                 Quaternion.identity
             );
+            AudioManager.I.Play("vfx_AttackPlayer");
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
 
@@ -466,5 +467,6 @@
 
             animator.SetFloat(attackUpHash, attackingUp ? 1f : 0f);
             animator.SetTrigger(attackHash);
-        }
+            AudioManager.I.Play("vfx_CacPlayer");
+    }
     }
