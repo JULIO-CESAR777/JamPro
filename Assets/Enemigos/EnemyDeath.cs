@@ -24,8 +24,7 @@ public class EnemyDeath : MonoBehaviour
         if (spawner != null)
             spawner.EnemyDied();
 
-        PlayerAttack.GetInstance().killCounter++;
-
+        PlayerAttack.GetInstance().AddToKillCounter();
         Destroy(gameObject);
     }
 
@@ -35,8 +34,7 @@ public class EnemyDeath : MonoBehaviour
         if (health <= 0)
         {
             anim.SetTrigger("Die");
-            print("mori");
-            
+            print("mori");   
         }
         else
         {
@@ -46,9 +44,11 @@ public class EnemyDeath : MonoBehaviour
         }
     }
 
-  
+   
 
-  
-  
+
+
+
+
 
 }

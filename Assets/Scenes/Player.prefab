@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4880678420588247758}
   - component: {fileID: 8074379682241534658}
+  - component: {fileID: 7426085060053580344}
   m_Layer: 0
   m_Name: AttackZone
   m_TagString: DmgZone
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25590098, y: 0.13099694}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -107,8 +108,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.511802, y: 1.2619939}
   m_EdgeRadius: 0
+--- !u!114 &7426085060053580344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246650468018844195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253f1cfa626357942b2fa80bcfbf5aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectEnemyDmg
 --- !u!1 &8243410992991791116
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +366,8 @@ MonoBehaviour:
   verticalAttackThreshold: 0.5
   sideAttackPosition: {x: 0.8, y: 0}
   upAttackPosition: {x: 0, y: 1.5}
-  sideAttackSize: {x: 1, y: 1}
-  upAttackSize: {x: 1, y: 1}
+  sideAttackSize: {x: 1.5, y: 1.5}
+  upAttackSize: {x: 1.5, y: 1.5}
   movementParameterName: Movement
 --- !u!114 &247681224079927954
 MonoBehaviour:
@@ -384,8 +397,8 @@ MonoBehaviour:
   killCounter: 0
   canDoSpecial: 0
   damageFromSpecial: 0
-  rayDistance: 17
-  rayDamage: 50
+  rayDistance: 34
+  rayDamage: 1000
   rayHitMask:
     serializedVersion: 2
     m_Bits: 128
@@ -422,6 +435,8 @@ MonoBehaviour:
   blackScreen: {fileID: 0}
   cam: {fileID: 0}
   cameraPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   fadeToBlackDuration: 0.3
