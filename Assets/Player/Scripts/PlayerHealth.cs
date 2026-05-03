@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     private GameManager gm;
     private bool isPaused = false;
     private Animator animator;
+    public bool win;
     
     [Header("Vida")]
     public float health;
@@ -33,10 +34,12 @@ public class PlayerHealth : MonoBehaviour
     [Header("Visuales")]
     [SerializeField] Slider slider;
     
+    
     private void Start()
     {
         health = maxHealth;
         isDead = false;
+        win = false;
         gm = GameManager.GetInstance();
         
         if (gm != null)
@@ -92,5 +95,14 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
         gm.ChangeGameState(GameState.Pause);
         animator.SetTrigger(isDeadHash);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Win"))
+        {
+            win = true;
+            gm.ChangeGameState(isPaused ? GameState.Play : GameState.Pause);
+        }
     }
 }

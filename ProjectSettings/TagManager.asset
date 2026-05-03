@@ -11,6 +11,7 @@ TagManager:
   - End
   - Transition
   - Platform
+  - Win
   layers:
   - Default
   - TransparentFX

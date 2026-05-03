@@ -1,4 +1,5 @@
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     public class PlayerAttack : MonoBehaviour
@@ -71,6 +72,8 @@
         [SerializeField] private LayerMask enemyDamageMask;
 
         [SerializeField] private float specialBulletDuration = 0.12f;
+        
+        [SerializeField] private List<GameObject> CargaDeCruz;
 
         private Vector2 pendingRayDirection;
         private bool hasPendingRay;
@@ -107,6 +110,10 @@
             // Ataque especial
             killCounter = 0;
             canDoSpecial = false;
+            for (int i = 0; i < CargaDeCruz.Count; i++)
+            {
+                CargaDeCruz[i].SetActive(false);
+            }
             
             // Manangers
             gm = GameManager.GetInstance();
@@ -174,9 +181,10 @@
             {
                 DoCloseCombatAttack();
             }
-
+            
             if (inputManager.IsButtonDown(BUTTONS.RIGHT_CLICK) && canShoot)
             {
+                print("Shoot");
                 StartShootAttack();
             }
             
@@ -434,6 +442,15 @@
                 specialBullet.transform.localScale = scale;
 
                 Destroy(specialBullet, specialBulletDuration);
+            }
+        }
+
+        public void AddToKillCounter()
+        {
+            killCounter++;
+            if (killCounter <= killToChargeAttack)
+            {
+                CargaDeCruz[killCounter-1].SetActive(true);
             }
         }
 
