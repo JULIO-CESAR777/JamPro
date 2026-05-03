@@ -184,7 +184,6 @@
             
             if (inputManager.IsButtonDown(BUTTONS.RIGHT_CLICK) && canShoot)
             {
-                print("Shoot");
                 StartShootAttack();
             }
             
@@ -417,11 +416,9 @@
 
             if (distance <= 0.01f) return;
 
-            Vector2 middlePoint = startPoint + direction * 0.5f;
-
             GameObject specialBullet = Instantiate(
                 specialBulletPrefab,
-                middlePoint,
+                startPoint,
                 Quaternion.identity
             );
 
@@ -436,7 +433,6 @@
             }
             else
             {
-                // Si no tiene script, intentamos escalarlo directamente.
                 Vector3 scale = specialBullet.transform.localScale;
                 scale.x = distance;
                 specialBullet.transform.localScale = scale;
