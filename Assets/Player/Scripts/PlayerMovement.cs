@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (inputManager.IsButtonDown(BUTTONS.START) && !PlayerHealth.GetInstance().isDead)
+        if (inputManager.IsButtonDown(BUTTONS.START) && !PlayerHealth.GetInstance().isDead && !PlayerHealth.GetInstance().win)
         {
             gm.ChangeGameState(isPaused ? GameState.Play : GameState.Pause);
         }
